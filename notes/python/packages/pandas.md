@@ -2,6 +2,8 @@
 
 > Adapted from a guide originally contributed by Mike Zhu (@mz888)!
 
+> NOTE: this document references the ["jeter_stats.csv"](/data/jeter_stats.csv) and ["jeter_stats.xlsx"](/data/jeter_stats.xlsx) files, which are available for download from the data directory.
+
 The `pandas` package provides capabilities for working with structured data, including spreadsheet-like objects called "DataFrames".
 
 Reference:
@@ -13,11 +15,12 @@ Reference:
   + [Input and Output](http://pandas.pydata.org/pandas-docs/stable/api.html#input-output)
   + [`head()` and `tail()`](http://pandas.pydata.org/pandas-docs/stable/basics.html#head-and-tail)
   + [`read_csv()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
+  + [`iterrows()`](http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iterrows.html)
   + [`groupby()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)
 
 ## Installation
 
-First install the package using pip, if necessary:
+First install the package using Pip, if necessary:
 
 ```sh
 pip install pandas
@@ -172,7 +175,6 @@ stats[stats["games"] > 150]
 #> 14  2009    153      634   107   212     72
 #> 15  2010    157      663   111   179     63
 #> 17  2012    159      683    99   216     45
-
 ```
 
 Calculate new ad-hoc columns like "batting average" and "on-base percentage":
@@ -195,8 +197,16 @@ stats
 #> 14  2009    153      634   107   212     72  0.334385  0.447950
 #> 15  2010    157      663   111   179     63  0.269985  0.365008
 #> 17  2012    159      683    99   216     45  0.316252  0.382138
-
 ```
+
+Iterate through rows:
+
+```py
+for index, row in stats.iterrows():
+    print(row["year"])
+```
+
+
 
 #### Exporting DataFrames
 
